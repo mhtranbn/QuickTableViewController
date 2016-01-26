@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if ! cmp -s Cartfile.resolved Carthage/Cartfile.resolved; then
+  bin/bootstrap
+else
+  echo "Use cached Carthage built framework"
+fi
