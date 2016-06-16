@@ -14,7 +14,7 @@ install:
   - bundle exec pod install --no-repo-update
 script:
   - bundle exec scan
-  - xctool -workspace QuickTableViewController.xcworkspace -scheme Example -sdk iphonesimulator clean build
+  - xcodebuild -workspace QuickTableViewController.xcworkspace -scheme Example -sdk iphonesimulator clean build | xcpretty -c && exit ${PIPESTATUS[0]}
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - make coverage
