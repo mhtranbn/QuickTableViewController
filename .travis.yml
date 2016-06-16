@@ -1,5 +1,9 @@
 language: objective-c
 osx_image: xcode8
+env:
+  matrix:
+  - ACTION=test-framework
+  - ACTION=build-example
 cache:
   bundler: true
   directories:
@@ -13,8 +17,7 @@ install:
   - bundle install --without development --deployment --jobs=3 --retry=3
   - bundle exec pod install --no-repo-update
 script:
-  - bundle exec scan
-  - xcodebuild -workspace QuickTableViewController.xcworkspace -scheme Example -sdk iphonesimulator clean build | xcpretty -c && exit ${PIPESTATUS[0]}
+  - make $ACTION
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - make coverage
