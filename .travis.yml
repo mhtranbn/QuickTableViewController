@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode8
 env:
   matrix:
-  - ACTION=test-framework
+  - ACTION=build-framework
   - ACTION=build-example
 cache:
   bundler: true
